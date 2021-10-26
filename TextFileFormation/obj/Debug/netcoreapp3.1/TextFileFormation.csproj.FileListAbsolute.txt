@@ -1,0 +1,14 @@
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.exe
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.deps.json
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.runtimeconfig.json
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.runtimeconfig.dev.json
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.dll
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.pdb
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.csproj.AssemblyReference.cache
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.AssemblyInfoInputs.cache
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.AssemblyInfo.cs
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.csproj.CoreCompileInputs.cache
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.dll
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.pdb
+C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.genruntimeconfig.cache
