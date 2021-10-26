@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace TextFileFormation
 {
-    class WordSearcher
+     class WordSearcher
     {
-        public void Run()
+         public void Run()
         {
-            var list1 = TextToListConverter("1000_words.txt");
-            var list2 = TextToListConverter("1500_words.txt");
-            var list3 = TextToListConverter("3000_words.txt");
             MainMenu();
         }
 
         private void MainMenu()
-        {
-            //Console.WriteLine("******MENU******");
-            //Console.WriteLine("1. CREATE TEXTFILE C:\\1000_words.txt");
-            //Console.WriteLine("2. CREATE TEXTFILE C:\\1500_words.txt");
-            //Console.WriteLine("3. CREATE TEXTFILE C:\\3000_words.txt");
-            //Console.WriteLine("4. CHOISE TEXT FILE TO CONTINUE");
-            //Console.WriteLine("Q. QUIT");
 
+        {
+            var file1 = TextToListConverter(@"\TextFiles\Text_1000.txt");
+            var file2 = TextToListConverter(@"\TextFiles\Text_1500.txt");
+            var file3 = TextToListConverter(@"\TextFiles\Text_3000.txt");
             bool run = true;
             while (run)
             {
@@ -35,7 +31,7 @@ namespace TextFileFormation
                 {
                     case 1:
                         {
-                            SearchForWord();
+                            //SearchForWord();
                             break;
                         }
                     case 2:
@@ -62,11 +58,11 @@ namespace TextFileFormation
                 }
             }
         }
-        List<string> TextToListConverter(string fileName)
+        string [] TextToListConverter(string fileName)
         {
-            List<string> listOfWords = new List<string>();
-
-            return listOfWords;
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + $"{fileName}";
+            string[] files = File.ReadAllLines(path);
+            return files; 
         }
 
         private void SortAlphabethicAndPrint()
@@ -79,8 +75,9 @@ namespace TextFileFormation
             throw new NotImplementedException();
         }
 
-        private void SearchForWord()
+        private void SearchForWord(string word, string [] stArr1, string[] stArr2, string[] stArr3)
         {
+
             throw new NotImplementedException();
         }
 
