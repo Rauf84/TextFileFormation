@@ -10,6 +10,7 @@ namespace TextFileFormation
         static string choiseSecondMenu = "";
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             do
             {
                 Console.WriteLine("******************MENU*******************");
@@ -136,5 +137,10 @@ namespace TextFileFormation
                 }
             }
 
+=======
+            var wordSearcher = new WordSearcher();
+            wordSearcher.Run();
+        }
+>>>>>>> d8eea7156f0d2206a821764db5195c1be9e15712
     }
 }
