@@ -105,23 +105,38 @@ namespace TextFileFormation
         private void ShowResult(int result1, int result2, int result3)
         {
             Dictionary<string, int> myDictionary = new Dictionary<string, int>();
-            int[] arr = { result1, result2, result3 };
+            string[] arrStr = { "Text_1000.txt", "Text_1500.txt", "Text_3000.txt" };
+            int[] arrInt = { result1, result2, result3 };
             int temp;
-            for (int i = 0; i < arr.Length - 1; i++)
+            string tempStr;
+            for (int i = 0; i < arrInt.Length - 1; i++)
             {
-                for (int j = 0; j < arr.Length - i - 1; j++)
+                for (int j = 0; j < arrInt.Length - i - 1; j++)
                 {
-                    if (arr[j] < arr[j+1])
+                    if (arrInt[j] < arrInt[j + 1])
                     {
-                        temp = arr[j + 1];
-                        arr[j + 1] = arr[j];
-                        arr[j] = temp;
+                        temp = arrInt[j + 1];
+                        arrInt[j + 1] = arrInt[j];
+                        arrInt[j] = temp;
+                        tempStr = arrStr[j + 1];
+                        arrStr[j + 1] = arrStr[j];
+                        arrStr[j] = tempStr;
+                        myDictionary.Add(arrStr[j], arrInt[j]);
                     }
                 }
             }
-            myDictionary.Add("Text_1000.txt", result1);
-            myDictionary.Add("Text_1500.txt", result2);
-            myDictionary.Add("Text_3000.txt", result3);
+            //for (int i = 0; i < myDictionary.Count - 1; i++)
+            //{
+            //    for (int j = 0; j < myDictionary.Count - i - 1; j++)
+            //    {
+            //        if (myDictionary.ElementAt(i).Value < myDictionary.ElementAt(i + 1).Value)
+            //        {
+            //            temp = myDictionary.ElementAt(j + 1).Value;
+            //            myDictionary.ElementAt(j + 1).Value = myDictionary.ElementAt(j).Value;
+            //            myDictionary.ElementAt(j).Value = temp;
+            //        }
+            //    }
+            //}
             foreach (var item in myDictionary)
             {
                 Console.WriteLine(item.Key, item.Value);
