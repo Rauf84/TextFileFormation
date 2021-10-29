@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gYqY+2r4revSHr3SMauzTNGcJ+AoYNJZA+OC5DkaejJ7jQw8Zf59DW9A1ujNxBw6Io4HAHC/aQ9hTHn8QT7aeA==",
+  "dgSpecHash": "aGYKMtXCG9+dpJk7XrW14KxtDs+oPlpnglINCgv7NMPAzN0S01zSX8YC/UDHslyZ4HMIlPH4lOfuCf/tVGE4yw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rauax2001\\Desktop\\React\\Rickard\\Datalogi\\inl2\\TextFileFormation\\TextFileFormation.csproj",
+  "projectFilePath": "C:\\Users\\Dennis\\Desktop\\Grupparbete\\TextFileFormation\\TextFileFormation\\TextFileFormation.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\rauax2001\\Desktop\\React\\Rickard\\Datalogi\\inl2\\TextFileFormation\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

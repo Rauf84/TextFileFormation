@@ -12,3 +12,17 @@ C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Deb
 C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.dll
 C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.pdb
 C:\Users\rauax2001\Desktop\React\Rickard\Datalogi\inl2\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.genruntimeconfig.cache
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.exe
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.deps.json
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.runtimeconfig.json
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.runtimeconfig.dev.json
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.dll
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\bin\Debug\netcoreapp3.1\TextFileFormation.pdb
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.csproj.AssemblyReference.cache
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.AssemblyInfoInputs.cache
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.AssemblyInfo.cs
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.csproj.CoreCompileInputs.cache
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.dll
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.pdb
+C:\Users\Dennis\Desktop\Grupparbete\TextFileFormation\TextFileFormation\obj\Debug\netcoreapp3.1\TextFileFormation.genruntimeconfig.cache
