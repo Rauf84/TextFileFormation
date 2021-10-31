@@ -6,6 +6,7 @@ using System.Net.WebSockets;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace TextFileFormation
@@ -18,11 +19,33 @@ namespace TextFileFormation
         }
 
         private void MainMenu()
-
         {
-            var file1 = TextToListConverter(@"\TextFiles\Text_1000.txt");
-            var file2 = TextToListConverter(@"\TextFiles\Text_1500.txt");
-            var file3 = TextToListConverter(@"\TextFiles\Text_3000.txt");
+            var fileName1 = "Text_1000.txt";
+            var fileName2 = "Text_1500.txt";
+            var fileName3 = "Text_3000.txt";
+
+            var file1 = TextToListConverter(@"\TextFiles\" + fileName1);
+            var file2 = TextToListConverter(@"\TextFiles\" + fileName2);
+            var file3 = TextToListConverter(@"\TextFiles\" + fileName3);
+
+            var fileObject1 = new FileObject()
+            {
+                Name = fileName1,
+                Data = file1
+            };
+
+            var fileObject2 = new FileObject()
+            {
+                Name = fileName2,
+                Data = file2
+            };
+
+            var fileObject3 = new FileObject()
+            {
+                Name = fileName3,
+                Data = file3
+            };
+
             bool run = true;
             while (run)
             {
@@ -39,7 +62,7 @@ namespace TextFileFormation
                             string word = Console.ReadLine();
                             if (!string.IsNullOrEmpty(word))
                             {
-                               SearchForWord(word, file1, file2, file3);
+                               SearchForWord(word, fileObject1, fileObject2, fileObject3);
                             }
                             else
                             {
@@ -91,24 +114,25 @@ namespace TextFileFormation
             throw new NotImplementedException();
         }
 
-        private void SearchForWord(string word, string[] file1, string[] file2, string[] file3)
+        private void SearchForWord(string word, FileObject file1, FileObject file2, FileObject file3)
         {
-            int result1, result2, result3;
+            file1.Result = CountWordsInFile(word, file1.Data);
+            file2.Result = CountWordsInFile(word, file2.Data);
+            file3.Result = CountWordsInFile(word, file3.Data);
 
-            result1 = CountWordsInFile(word, file1);
-            result2 = CountWordsInFile(word, file2);
-            result3 = CountWordsInFile(word, file3);
-
-            ShowResult(result1, result2, result3);
+            ShowResult(file1, file2, file3);
         }
 
-        private void ShowResult(int result1, int result2, int result3)
+        private void ShowResult(FileObject file1, FileObject file2, FileObject file3)
         {
-            Dictionary<string, int> myDictionary = new Dictionary<string, int>();
-            string[] arrStr = { "Text_1000.txt", "Text_1500.txt", "Text_3000.txt" };
-            int[] arrInt = { result1, result2, result3 };
+            var fileObjectList = new List<FileObject>();
+            fileObjectList.Add(file1);
+            fileObjectList.Add(file2);
+            fileObjectList.Add(file3);
+
+            int[] arrInt = { file1.Result, file2.Result, file3.Result };
             int temp;
-            string tempStr;
+
             for (int i = 0; i < arrInt.Length - 1; i++)
             {
                 for (int j = 0; j < arrInt.Length - i - 1; j++)
@@ -118,29 +142,65 @@ namespace TextFileFormation
                         temp = arrInt[j + 1];
                         arrInt[j + 1] = arrInt[j];
                         arrInt[j] = temp;
-                        tempStr = arrStr[j + 1];
-                        arrStr[j + 1] = arrStr[j];
-                        arrStr[j] = tempStr;
-                        myDictionary.Add(arrStr[j], arrInt[j]);
                     }
                 }
             }
-            //for (int i = 0; i < myDictionary.Count - 1; i++)
-            //{
-            //    for (int j = 0; j < myDictionary.Count - i - 1; j++)
-            //    {
-            //        if (myDictionary.ElementAt(i).Value < myDictionary.ElementAt(i + 1).Value)
-            //        {
-            //            temp = myDictionary.ElementAt(j + 1).Value;
-            //            myDictionary.ElementAt(j + 1).Value = myDictionary.ElementAt(j).Value;
-            //            myDictionary.ElementAt(j).Value = temp;
-            //        }
-            //    }
-            //}
-            foreach (var item in myDictionary)
+
+            for (int i = 0; i < arrInt.Length; i++)
             {
-                Console.WriteLine(item.Key, item.Value);
+                for (int j =0; j < fileObjectList.Count; j++)
+                {
+                    if (arrInt[i] == fileObjectList[j].Result && arrInt[i] != 0)
+                    {
+                        Console.WriteLine($"{fileObjectList[j].Name} - {fileObjectList[j].Result}");
+                    }
+                }
+                if (arrInt[i] == 0)
+                {
+                    Console.WriteLine($"{fileObjectList[i].Name} - No result found.");
+                }
             }
+            MenuSaveResult();
+        }
+
+        private void MenuSaveResult()
+        {
+            bool run = true;
+            while (run)
+            {
+                Console.Write("Save results? y/n: ");
+                string input = Console.ReadLine();
+                input.ToLower();
+                if (!string.IsNullOrEmpty(input))
+                {
+                    switch (input)
+                    {
+                        case "y":
+                            {
+                                SaveResult();
+                                break;
+                            }
+                        case "n":
+                            {
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Wrong input, try again.");
+                                break;
+                            }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input, try again.");
+                }
+            }
+        }
+
+        private void SaveResult()
+        {
+            throw new NotImplementedException();
         }
 
         private static int CountWordsInFile(string word, string[] stArr)
