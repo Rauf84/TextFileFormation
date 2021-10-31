@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.IO;
-using System.Linq;
-using System.Net.WebSockets;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace TextFileFormation
 {
-     class WordSearcher
+    internal class WordSearcher
     {
-         private BinaryTree binaryTree = new BinaryTree();
+        private BinaryTree binaryTree = new BinaryTree();
 
-         public void Run()
+        public void Run()
         {
             MainMenu();
         }
@@ -49,7 +42,6 @@ namespace TextFileFormation
                 Data = fileConvert3
             };
 
-
             bool run = true;
             while (run)
             {
@@ -66,7 +58,7 @@ namespace TextFileFormation
                             string word = Console.ReadLine();
                             if (!string.IsNullOrEmpty(word))
                             {
-                               SearchForWord(word, file1, file2, file3);
+                                SearchForWord(word, file1, file2, file3);
                             }
                             else
                             {
@@ -98,7 +90,8 @@ namespace TextFileFormation
                 }
             }
         }
-        string [] TextToListConverter(string fileName)
+
+        private string[] TextToListConverter(string fileName)
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + $"{fileName}";
             string files = File.ReadAllText(path);
@@ -158,7 +151,7 @@ namespace TextFileFormation
         {
             if (binaryTree != null)
             {
-                 binaryTree.TraverseInOrder(binaryTree.Root);
+                binaryTree.TraverseInOrder(binaryTree.Root);
             }
             else
             {
@@ -183,7 +176,6 @@ namespace TextFileFormation
         /// <param name="file3"></param>
         private void ShowResult(FileObject file1, FileObject file2, FileObject file3)
         {
-            
             var fileObjectList = new List<FileObject>();
             fileObjectList.Add(file1);
             fileObjectList.Add(file2);
@@ -207,7 +199,7 @@ namespace TextFileFormation
 
             for (int i = 0; i < arrInt.Length; i++)
             {
-                for (int j =0; j < fileObjectList.Count; j++)
+                for (int j = 0; j < fileObjectList.Count; j++)
                 {
                     if (arrInt[i] == fileObjectList[j].Result && arrInt[i] != 0)
                     {

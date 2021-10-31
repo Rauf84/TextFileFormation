@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TextFileFormation
 {
-    class BinaryTree
+    internal class BinaryTree
     {
         public Node Root { get; set; }
 
