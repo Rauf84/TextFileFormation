@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Net.WebSockets;
@@ -26,26 +27,26 @@ namespace TextFileFormation
             var fileName2 = "Text_1500.txt";
             var fileName3 = "Text_3000.txt";
 
-            var file1 = TextToListConverter(@"\TextFiles\" + fileName1);
-            var file2 = TextToListConverter(@"\TextFiles\" + fileName2);
-            var file3 = TextToListConverter(@"\TextFiles\" + fileName3);
+            var fileConvert1 = TextToListConverter(@"\TextFiles\" + fileName1);
+            var fileConvert2 = TextToListConverter(@"\TextFiles\" + fileName2);
+            var fileConvert3 = TextToListConverter(@"\TextFiles\" + fileName3);
 
-            var fileObject1 = new FileObject()
+            var file1 = new FileObject()
             {
                 Name = fileName1,
-                Data = file1
+                Data = fileConvert1
             };
 
-            var fileObject2 = new FileObject()
+            var file2 = new FileObject()
             {
                 Name = fileName2,
-                Data = file2
+                Data = fileConvert2
             };
 
-            var fileObject3 = new FileObject()
+            var file3 = new FileObject()
             {
                 Name = fileName3,
-                Data = file3
+                Data = fileConvert3
             };
 
 
@@ -65,7 +66,7 @@ namespace TextFileFormation
                             string word = Console.ReadLine();
                             if (!string.IsNullOrEmpty(word))
                             {
-                               SearchForWord(word, fileObject1, fileObject2, fileObject3);
+                               SearchForWord(word, file1, file2, file3);
                             }
                             else
                             {
@@ -80,7 +81,7 @@ namespace TextFileFormation
                         }
                     case 3:
                         {
-                            SortAlphabethicAndPrint();
+                            SortAlphabethicAndPrint(file1, file2, file3);
                             break;
                         }
                     case 0:
@@ -102,13 +103,55 @@ namespace TextFileFormation
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + $"{fileName}";
             string files = File.ReadAllText(path);
             string[] splittedFile = files.Split(' ');
-
             return splittedFile;
         }
 
-        private void SortAlphabethicAndPrint()
+        private void SortAlphabethicAndPrint(FileObject file1, FileObject file2, FileObject file3)
         {
-            throw new NotImplementedException();
+            List<string> sortedList1 = new List<string>();
+            List<string> sortedList2 = new List<string>();
+            List<string> sortedList3 = new List<string>();
+
+            string pattern = "^[a-öA-Ö]";
+            Regex rgx = new Regex(pattern);
+
+            for (int i = 0; i < file1.Data.Length; i++)
+            {
+                if (rgx.IsMatch(file1.Data[i]))
+                {
+                    sortedList1.Add(file1.Data[i]);
+                }
+            }
+            for (int i = 0; i < file2.Data.Length; i++)
+            {
+                if (rgx.IsMatch(file2.Data[i]))
+                {
+                    sortedList2.Add(file2.Data[i]);
+                }
+            }
+            for (int i = 0; i < file3.Data.Length; i++)
+            {
+                if (rgx.IsMatch(file3.Data[i]))
+                {
+                    sortedList3.Add(file3.Data[i]);
+                }
+            }
+            sortedList1.Sort();
+            sortedList2.Sort();
+            sortedList3.Sort();
+
+            for (int i = 0; i < 7; i++)
+            {
+                Console.WriteLine(sortedList1[i]);
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                Console.WriteLine(sortedList2[i]);
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                Console.WriteLine(sortedList3[i]);
+            }
         }
 
         private void PrintDataStructure()
@@ -132,8 +175,15 @@ namespace TextFileFormation
             ShowResult(file1, file2, file3);
         }
 
+        /// <summary>
+        /// O(n^2 + n^2)
+        /// </summary>
+        /// <param name="file1"></param>
+        /// <param name="file2"></param>
+        /// <param name="file3"></param>
         private void ShowResult(FileObject file1, FileObject file2, FileObject file3)
         {
+            
             var fileObjectList = new List<FileObject>();
             fileObjectList.Add(file1);
             fileObjectList.Add(file2);
@@ -216,6 +266,12 @@ namespace TextFileFormation
             binaryTree.Add(file3.Result);
         }
 
+        /// <summary>
+        /// O(n)
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="stArr"></param>
+        /// <returns></returns>
         private static int CountWordsInFile(string word, string[] stArr)
         {
             int result = 0;
