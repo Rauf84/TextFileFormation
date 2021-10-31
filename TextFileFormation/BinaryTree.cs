@@ -4,8 +4,16 @@ namespace TextFileFormation
 {
     internal class BinaryTree
     {
+        /// <summary>
+        /// Class for the binary tree datastructure.
+        /// </summary>
         public Node Root { get; set; }
 
+        /// <summary>
+        /// Add the value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool Add(int value)
         {
             Node before = null, after = this.Root;
@@ -39,6 +47,10 @@ namespace TextFileFormation
             return true;
         }
 
+        /// <summary>
+        /// Rekursive method.
+        /// </summary>
+        /// <param name="parent"></param>
         public void TraversePreOrder(Node parent)
         {
             if (parent != null)
@@ -50,6 +62,10 @@ namespace TextFileFormation
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Rekursive method.
+        /// </summary>
+        /// <param name="parent"></param>
         public void TraverseInOrder(Node parent)
         {
             if (parent != null)
@@ -61,6 +77,10 @@ namespace TextFileFormation
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Rekursive method.
+        /// </summary>
+        /// <param name="parent"></param>
         public void TraversePostOrder(Node parent)
         {
             if (parent != null)
