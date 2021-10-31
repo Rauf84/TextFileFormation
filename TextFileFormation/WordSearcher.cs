@@ -13,6 +13,8 @@ namespace TextFileFormation
 {
      class WordSearcher
     {
+         private BinaryTree binaryTree = new BinaryTree();
+
          public void Run()
         {
             MainMenu();
@@ -45,6 +47,7 @@ namespace TextFileFormation
                 Name = fileName3,
                 Data = file3
             };
+
 
             bool run = true;
             while (run)
@@ -160,10 +163,10 @@ namespace TextFileFormation
                     Console.WriteLine($"{fileObjectList[i].Name} - No result found.");
                 }
             }
-            MenuSaveResult();
+            MenuSaveResult(file1, file2, file3);
         }
 
-        private void MenuSaveResult()
+        private void MenuSaveResult(FileObject file1, FileObject file2, FileObject file3)
         {
             bool run = true;
             while (run)
@@ -177,11 +180,13 @@ namespace TextFileFormation
                     {
                         case "y":
                             {
-                                SaveResult();
+                                SaveResult(file1, file2, file3);
+                                run = false;
                                 break;
                             }
                         case "n":
                             {
+                                run = false;
                                 break;
                             }
                         default:
@@ -198,9 +203,11 @@ namespace TextFileFormation
             }
         }
 
-        private void SaveResult()
+        private void SaveResult(FileObject file1, FileObject file2, FileObject file3)
         {
-            throw new NotImplementedException();
+            binaryTree.Add(file1.Result);
+            binaryTree.Add(file2.Result);
+            binaryTree.Add(file3.Result);
         }
 
         private static int CountWordsInFile(string word, string[] stArr)
