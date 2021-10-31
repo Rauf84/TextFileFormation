@@ -6,6 +6,7 @@
         /// Class for the nodes.
         /// </summary>
         public Node LeftNode { get; set; }
+
         public Node RightNode { get; set; }
         public int Data { get; set; }
     }
