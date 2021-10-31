@@ -15,13 +15,12 @@ namespace TextFileFormation
             while (after != null)
             {
                 before = after;
-                if (value < after.Data) //Is new node in left tree? 
+                if (value < after.Data)
                     after = after.LeftNode;
-                else if (value > after.Data) //Is new node in right tree?
+                else if (value > after.Data)
                     after = after.RightNode;
                 else
                 {
-                    //Exist same value
                     return false;
                 }
             }
@@ -29,7 +28,7 @@ namespace TextFileFormation
             Node newNode = new Node();
             newNode.Data = value;
 
-            if (this.Root == null)//Tree ise empty
+            if (this.Root == null)
                 this.Root = newNode;
             else
             {
@@ -50,6 +49,7 @@ namespace TextFileFormation
                 TraversePreOrder(parent.LeftNode);
                 TraversePreOrder(parent.RightNode);
             }
+            Console.WriteLine();
         }
 
         public void TraverseInOrder(Node parent)
@@ -60,6 +60,7 @@ namespace TextFileFormation
                 Console.Write(parent.Data + " ");
                 TraverseInOrder(parent.RightNode);
             }
+            Console.WriteLine();
         }
 
         public void TraversePostOrder(Node parent)
@@ -70,6 +71,7 @@ namespace TextFileFormation
                 TraversePostOrder(parent.RightNode);
                 Console.Write(parent.Data + " ");
             }
+            Console.WriteLine();
         }
     }
 }

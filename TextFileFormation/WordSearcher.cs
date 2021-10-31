@@ -101,7 +101,6 @@ namespace TextFileFormation
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + $"{fileName}";
             string files = File.ReadAllText(path);
-
             string[] splittedFile = files.Split(' ');
 
             return splittedFile;
@@ -114,7 +113,14 @@ namespace TextFileFormation
 
         private void PrintDataStructure()
         {
-            throw new NotImplementedException();
+            if (binaryTree != null)
+            {
+                 binaryTree.TraverseInOrder(binaryTree.Root);
+            }
+            else
+            {
+                Console.WriteLine("Datastructure is empty.");
+            }
         }
 
         private void SearchForWord(string word, FileObject file1, FileObject file2, FileObject file3)
