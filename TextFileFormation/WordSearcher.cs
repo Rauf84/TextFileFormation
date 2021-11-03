@@ -1,54 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.IO;
-using System.Linq;
-using System.Net.WebSockets;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace TextFileFormation
 {
-     class WordSearcher
+    internal class WordSearcher
     {
-         private BinaryTree binaryTree = new BinaryTree();
+        private BinaryTree binaryTree = new BinaryTree();
 
-         public void Run()
+        /// <summary>
+        /// Run method to startup the application.
+        /// </summary>
+        public void Run()
         {
             MainMenu();
         }
 
+        /// <summary>
+        /// Method for the main menu.
+        /// </summary>
         private void MainMenu()
         {
-            var fileName1 = "Text_1000.txt";
-            var fileName2 = "Text_1500.txt";
-            var fileName3 = "Text_3000.txt";
-
-            var fileConvert1 = TextToListConverter(@"\TextFiles\" + fileName1);
-            var fileConvert2 = TextToListConverter(@"\TextFiles\" + fileName2);
-            var fileConvert3 = TextToListConverter(@"\TextFiles\" + fileName3);
-
-            var file1 = new FileObject()
-            {
-                Name = fileName1,
-                Data = fileConvert1
-            };
-
-            var file2 = new FileObject()
-            {
-                Name = fileName2,
-                Data = fileConvert2
-            };
-
-            var file3 = new FileObject()
-            {
-                Name = fileName3,
-                Data = fileConvert3
-            };
-
+            FileObject file1, file2, file3;
+            Setup(out file1, out file2, out file3);
 
             bool run = true;
             while (run)
@@ -57,56 +32,107 @@ namespace TextFileFormation
                 Console.WriteLine("1. Search document for a word");
                 Console.WriteLine("2. Print datastructure");
                 Console.WriteLine("3. Sort in alphabethic order and print.");
-                int.TryParse(Console.ReadLine(), out int input);
-                switch (input)
+                Console.WriteLine("0. End program.");
+                if (int.TryParse(Console.ReadLine(), out int input))
                 {
-                    case 1:
-                        {
-                            Console.WriteLine("Input word: ");
-                            string word = Console.ReadLine();
-                            if (!string.IsNullOrEmpty(word))
+                    switch (input)
+                    {
+                        case 1:
                             {
-                               SearchForWord(word, file1, file2, file3);
+                                Console.WriteLine("Input word: ");
+                                string word = Console.ReadLine();
+                                if (!string.IsNullOrEmpty(word))
+                                {
+                                    SearchForWord(word, file1, file2, file3);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Wrong input, try again!");
+                                }
+                                break;
                             }
-                            else
+                        case 2:
+                            {
+                                PrintDataStructure();
+                                break;
+                            }
+                        case 3:
+                            {
+                                SortAlphabetical(file1, file2, file3);
+                                break;
+                            }
+                        case 0:
+                            {
+                                Console.WriteLine("Bye bye");
+                                run = false;
+                                break;
+                            }
+                        default:
                             {
                                 Console.WriteLine("Wrong input, try again!");
+                                break;
                             }
-                            break;
-                        }
-                    case 2:
-                        {
-                            PrintDataStructure();
-                            break;
-                        }
-                    case 3:
-                        {
-                            SortAlphabethicAndPrint(file1, file2, file3);
-                            break;
-                        }
-                    case 0:
-                        {
-                            Console.WriteLine("Bye bye");
-                            run = false;
-                            break;
-                        }
-                    default:
-                        {
-                            Console.WriteLine("Wrong input, try again!");
-                            break;
-                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input, try again.");
                 }
             }
         }
-        string [] TextToListConverter(string fileName)
+
+        /// <summary>
+        /// Setup runs to setup the files.
+        /// </summary>
+        /// <param name="file1"></param>
+        /// <param name="file2"></param>
+        /// <param name="file3"></param>
+        private void Setup(out FileObject file1, out FileObject file2, out FileObject file3)
+        {
+            var fileName1 = "Text_1000.txt";
+            var fileName2 = "Text_1500.txt";
+            var fileName3 = "Text_3000.txt";
+
+            var fileConvert1 = ConvertFileToArray(@"\TextFiles\" + fileName1);
+            var fileConvert2 = ConvertFileToArray(@"\TextFiles\" + fileName2);
+            var fileConvert3 = ConvertFileToArray(@"\TextFiles\" + fileName3);
+
+            file1 = new FileObject()
+            {
+                Name = fileName1,
+                Data = fileConvert1
+            };
+            file2 = new FileObject()
+            {
+                Name = fileName2,
+                Data = fileConvert2
+            };
+            file3 = new FileObject()
+            {
+                Name = fileName3,
+                Data = fileConvert3
+            };
+        }
+
+        /// <summary>
+        /// Convert file to string array.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private string[] ConvertFileToArray(string fileName)
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + $"{fileName}";
             string files = File.ReadAllText(path);
-            string[] splittedFile = files.Split(' ');
-            return splittedFile;
+            return files.Split(' ');
         }
 
-        private void SortAlphabethicAndPrint(FileObject file1, FileObject file2, FileObject file3)
+        /// <summary>
+        /// Sort words in the files in alphabetical order.
+        /// </summary>
+        /// <param name="file1"></param>
+        /// <param name="file2"></param>
+        /// <param name="file3"></param>
+        private void SortAlphabetical(FileObject file1, FileObject file2, FileObject file3)
         {
             List<string> sortedList1 = new List<string>();
             List<string> sortedList2 = new List<string>();
@@ -136,10 +162,22 @@ namespace TextFileFormation
                     sortedList3.Add(file3.Data[i]);
                 }
             }
+
             sortedList1.Sort();
             sortedList2.Sort();
             sortedList3.Sort();
 
+            PrintTheAlphabeticalSortedLists(sortedList1, sortedList2, sortedList3);
+        }
+
+        /// <summary>
+        /// Prints the sorted lists to console.
+        /// </summary>
+        /// <param name="sortedList1"></param>
+        /// <param name="sortedList2"></param>
+        /// <param name="sortedList3"></param>
+        private static void PrintTheAlphabeticalSortedLists(List<string> sortedList1, List<string> sortedList2, List<string> sortedList3)
+        {
             for (int i = 0; i < 7; i++)
             {
                 Console.WriteLine(sortedList1[i]);
@@ -154,11 +192,14 @@ namespace TextFileFormation
             }
         }
 
+        /// <summary>
+        /// Prints all data in the binarytree to console.
+        /// </summary>
         private void PrintDataStructure()
         {
             if (binaryTree != null)
             {
-                 binaryTree.TraverseInOrder(binaryTree.Root);
+                binaryTree.TraverseInOrder(binaryTree.Root);
             }
             else
             {
@@ -166,24 +207,31 @@ namespace TextFileFormation
             }
         }
 
+        /// <summary>
+        /// Search for the input word in the files.
+        /// </summary>
+        /// <param name="word"></param>
+        /// <param name="file1"></param>
+        /// <param name="file2"></param>
+        /// <param name="file3"></param>
         private void SearchForWord(string word, FileObject file1, FileObject file2, FileObject file3)
         {
             file1.Result = CountWordsInFile(word, file1.Data);
             file2.Result = CountWordsInFile(word, file2.Data);
             file3.Result = CountWordsInFile(word, file3.Data);
 
-            ShowResult(file1, file2, file3);
+            SortData(file1, file2, file3);
         }
 
         /// <summary>
-        /// O(n^2 + n^2)
+        /// Sort the data.
+        /// O(n^2)
         /// </summary>
         /// <param name="file1"></param>
         /// <param name="file2"></param>
         /// <param name="file3"></param>
-        private void ShowResult(FileObject file1, FileObject file2, FileObject file3)
+        private void SortData(FileObject file1, FileObject file2, FileObject file3)
         {
-            
             var fileObjectList = new List<FileObject>();
             fileObjectList.Add(file1);
             fileObjectList.Add(file2);
@@ -205,9 +253,20 @@ namespace TextFileFormation
                 }
             }
 
+            PrintSortedData(fileObjectList, arrInt);
+            SaveResultMenu(file1, file2, file3);
+        }
+
+        /// <summary>
+        /// Prints the sorted data.
+        /// </summary>
+        /// <param name="fileObjectList"></param>
+        /// <param name="arrInt"></param>
+        private static void PrintSortedData(List<FileObject> fileObjectList, int[] arrInt)
+        {
             for (int i = 0; i < arrInt.Length; i++)
             {
-                for (int j =0; j < fileObjectList.Count; j++)
+                for (int j = 0; j < fileObjectList.Count; j++)
                 {
                     if (arrInt[i] == fileObjectList[j].Result && arrInt[i] != 0)
                     {
@@ -219,17 +278,21 @@ namespace TextFileFormation
                     Console.WriteLine($"{fileObjectList[i].Name} - No result found.");
                 }
             }
-            MenuSaveResult(file1, file2, file3);
         }
 
-        private void MenuSaveResult(FileObject file1, FileObject file2, FileObject file3)
+        /// <summary>
+        /// Method to save result.
+        /// </summary>
+        /// <param name="file1"></param>
+        /// <param name="file2"></param>
+        /// <param name="file3"></param>
+        private void SaveResultMenu(FileObject file1, FileObject file2, FileObject file3)
         {
             bool run = true;
             while (run)
             {
                 Console.Write("Save results? y/n: ");
-                string input = Console.ReadLine();
-                input.ToLower();
+                string input = Console.ReadLine().ToLower();
                 if (!string.IsNullOrEmpty(input))
                 {
                     switch (input)
@@ -237,11 +300,13 @@ namespace TextFileFormation
                         case "y":
                             {
                                 SaveResult(file1, file2, file3);
+                                Console.WriteLine("Results was saved.");
                                 run = false;
                                 break;
                             }
                         case "n":
                             {
+                                Console.WriteLine("Results was not saved.");
                                 run = false;
                                 break;
                             }
@@ -259,6 +324,12 @@ namespace TextFileFormation
             }
         }
 
+        /// <summary>
+        /// Save results to binary tree.
+        /// </summary>
+        /// <param name="file1"></param>
+        /// <param name="file2"></param>
+        /// <param name="file3"></param>
         private void SaveResult(FileObject file1, FileObject file2, FileObject file3)
         {
             binaryTree.Add(file1.Result);
